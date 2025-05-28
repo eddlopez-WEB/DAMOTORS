@@ -1,0 +1,527 @@
+/* Variables de color */
+:root {
+    --primary: #ce203c;
+    --secondary: #000000;
+    --accent: #7D7D7D;
+    --light: #F5F5F5;
+    --text-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light);
+    color: var(--secondary);
+}
+
+/* Header y logo */
+header {
+    height: 70px;  /* Altura balanceada */
+    min-height: 60px;  /* Altura mínima para mantener consistencia */
+    background-color: rgba(0, 0, 0, 0.9);  /* Fondo más visible pero aún transparente */
+    color: white;
+    padding: 0;  /* Eliminar padding vertical para mejor control de altura */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);  /* Sombra más pronunciada */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* Cambiado a space-between para distribuir elementos */
+    padding: 0 30px;  /* Padding horizontal para separar del borde */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;  /* Centrar verticalmente */
+    font-size: 1.8rem;
+    font-weight: bold;
+    height: auto;  /* Auto para adaptarse al contenido */
+    width: auto;  /* Auto para adaptarse al contenido */
+    margin: 0;  /* Eliminar márgenes */
+    animation: pulse 2s infinite;
+}
+
+.menu-logo {
+    width: 100px;  /* Logo ligeramente más grande */
+    height: auto;  /* Mantener proporción */
+    transition: transform 0.3s ease;
+    margin-right: 15px;  /* Espacio entre logo y texto si hay */
+}
+
+.tagline {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;  /* Mejor legibilidad */
+    margin: 0;  /* Eliminar margen */
+    opacity: 0.9;  /* Ligeramente transparente */
+}
+
+/* Menú principal (desktop) */
+nav {
+    display: flex;
+    justify-content: flex-end;  /* Alinear a la derecha */
+    transition: all 0.5s ease;
+}
+
+nav ul {
+    text-transform: uppercase;
+    list-style: none;
+    display: flex;
+    margin: 10px;
+    padding: 0;
+    align-items: center;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.6rem 1rem;  /* Padding reducido ligeramente */
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+    display: block;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    font-size: 1rem;  /* Tamaño ligeramente reducido */
+    letter-spacing: 0.5px;  /* Mejor espacio entre letras */
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ce203c;  /* Color de acento para el hover */
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 30px;
+    height: 3px;
+    margin: 6px auto;
+    background-color: rgb(255, 0, 0);
+    transition: all 0.3s ease;
+}
+
+/* Versión móvil - Menú desplegable */
+@media (max-width: 768px) {
+    header {
+        background-color: rgba(0, 0, 0, 0.8); 
+        min-height: 30px;
+        padding: 5px 0;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+    }
+    
+    .logo-container {
+        margin: 0;
+        font-size: 1.5rem;
+        align-items: flex-start;
+    }
+    
+    .menu-logo {
+        max-width: 90px;
+        margin: 10px;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .menu-toggle {
+        display: block;
+        position: relative;  /* Cambiar a relativo si el padre ya es flex */
+        top: auto;           /* Eliminar el posicionamiento top fijo */
+        right: auto;         /* Eliminar el posicionamiento right fijo */
+        margin-right: 15px;  /* Dar un margen si es necesario */
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: rgba(206, 32, 60, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        z-index: 1000;
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+        transition: left 0.4s ease-out;
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        height: 70%;
+        justify-content: space-around;
+    }
+    
+    nav li {
+        margin: 0;
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.4s ease;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Retrasos para animación en cascada */
+    nav.active li:nth-child(1) { transition-delay: 0.15s; }
+    nav.active li:nth-child(2) { transition-delay: 0.25s; }
+    nav.active li:nth-child(3) { transition-delay: 0.35s; }
+    nav.active li:nth-child(4) { transition-delay: 0.45s; }
+    nav.active li:nth-child(5) { transition-delay: 0.55s; }
+    
+    nav a {
+        margin: 0;
+        padding: 15px 0;
+        font-size: 1.3rem;
+        width: 100%;
+    }
+    
+    /* Transformación a "X" */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    /* Bloquear scroll cuando el menú está abierto */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+.hero {
+    height: 75vh;
+    padding-top: 100px;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+                url('images/Imagen de WhatsApp 2025-04-16 a las 23.01.21_288541f5.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light);
+    margin-top: 0;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+    
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 35px;
+    max-width: 700px;
+    line-height: 1.6;
+    font-weight: 300;
+    
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn:hover {
+    background-color: #ffffff;
+    color: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.services {
+    background-color: white;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background-color: var(--light);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.gallery img {
+    
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+
+.gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.contact {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: white;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--secondary);
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.info-card {
+    padding: 30px;
+    background-color: var(--light);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.info-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.social-links {
+    margin: 20px 0;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--primary);
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 60px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 100;
+    animation: pulse 2s infinite;
+    transition: all 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 0.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+}
+/* Variables de color */
+:root {
+    --primary: #ce203c;
+    --secondary: #ffffff; /* Cambiado a blanco para texto */
+    --accent: #7D7D7D;
+    --lightt: #111111; /* Fondo oscuro en lugar de blanco */
+    --text-shadow: rgba(255, 255, 255, 0.5);
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--lightt); /* Ahora negro */
+    color: var(--secondary); /* Texto en blanco */
+}
+
+/* Cambiar fondo y texto de las secciones específicas */
+.services,
+.contact,
+footer {
+    background-color: #000000; /* Fondo negro sólido */
+    color: var(--secondary); /* Texto blanco */
+}
+
+/* Service cards */
+.service-card {
+    background-color: #1a1a1a; /* Fondo gris oscuro */
+    color: var(--secondary); /* Texto claro */
+}
+
+/* Contact info cards */
+.info-card {
+    background-color: #1a1a1a;
+    color: var(--secondary);
+}
+
+/* Botón */
+.btn {
+    background-color: var(--primary);
+    color: white;
+}
+.btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Ajuste del footer y redes sociales */
+footer {
+    background-color: #242424;
+    color: var(--secondary);
+}
+
+.social-links a:hover {
+    color: var(--primary);
+}
+
+/* Ajuste de la galería */
+.gallery img {
+    filter: brightness(0.9); /* Mejora visibilidad en fondo oscuro */
+}
