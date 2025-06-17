@@ -1,4 +1,4 @@
-/* Variables de color */
+
 :root {
     --primary: #ce203c;
     --secondary: #000000;
@@ -7,7 +7,7 @@
     --text-shadow: rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos generales */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -16,55 +16,55 @@ body {
     color: var(--secondary);
 }
 
-/* Header y logo */
+
 header {
-    height: 70px;  /* Altura balanceada */
-    min-height: 60px;  /* Altura mínima para mantener consistencia */
-    background-color: rgba(0, 0, 0, 0.9);  /* Fondo más visible pero aún transparente */
+    height: 70px;  
+    min-height: 60px;  
+    background-color: rgba(0, 0, 0, 0.9); 
     color: white;
-    padding: 0;  /* Eliminar padding vertical para mejor control de altura */
+    padding: 0;  
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);  /* Sombra más pronunciada */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);  
     display: flex;
     align-items: center;
-    justify-content: space-between;  /* Cambiado a space-between para distribuir elementos */
-    padding: 0 30px;  /* Padding horizontal para separar del borde */
+    justify-content: space-between;  
+    padding: 0 30px;  
 }
 
 .logo-container {
     display: flex;
-    align-items: center;  /* Centrar verticalmente */
+    align-items: center;  
     font-size: 1.8rem;
     font-weight: bold;
-    height: auto;  /* Auto para adaptarse al contenido */
-    width: auto;  /* Auto para adaptarse al contenido */
-    margin: 0;  /* Eliminar márgenes */
+    height: auto;  
+    width: auto;  
+    margin: 0;  
     animation: pulse 2s infinite;
 }
 
 .menu-logo {
-    width: 100px;  /* Logo ligeramente más grande */
-    height: auto;  /* Mantener proporción */
+    width: 100px; 
+    height: auto;  
     transition: transform 0.3s ease;
-    margin-right: 15px;  /* Espacio entre logo y texto si hay */
+    margin-right: 15px;  
 }
 
 .tagline {
     text-align: left;
     font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.5px;  /* Mejor legibilidad */
-    margin: 0;  /* Eliminar margen */
-    opacity: 0.9;  /* Ligeramente transparente */
+    letter-spacing: 0.5px;  
+    margin: 0;  
+    opacity: 0.9;  
 }
 
-/* Menú principal (desktop) */
+
 nav {
     display: flex;
-    justify-content: flex-end;  /* Alinear a la derecha */
+    justify-content: flex-end;  
     transition: all 0.5s ease;
 }
 
@@ -85,15 +85,15 @@ nav a {
     color: white;
     text-decoration: none;
     margin: 0 1rem;
-    padding: 0.6rem 1rem;  /* Padding reducido ligeramente */
+    padding: 0.6rem 1rem; 
     transition: all 0.3s;
     border-bottom: 2px solid transparent;
     display: block;
     font-weight: 500;
     position: relative;
     overflow: hidden;
-    font-size: 1rem;  /* Tamaño ligeramente reducido */
-    letter-spacing: 0.5px;  /* Mejor espacio entre letras */
+    font-size: 1rem;  
+    letter-spacing: 0.5px;  
 }
 
 nav a::after {
@@ -103,7 +103,7 @@ nav a::after {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #ce203c;  /* Color de acento para el hover */
+    background-color: #ce203c;  
     transition: width 0.3s ease;
 }
 
@@ -111,7 +111,7 @@ nav a:hover::after {
     width: 100%;
 }
 
-/* Botón hamburguesa */
+
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -131,7 +131,7 @@ nav a:hover::after {
     transition: all 0.3s ease;
 }
 
-/* Versión móvil - Menú desplegable */
+
 @media (max-width: 768px) {
     header {
         background-color: rgba(0, 0, 0, 0.8); 
@@ -161,10 +161,10 @@ nav a:hover::after {
     
     .menu-toggle {
         display: block;
-        position: relative;  /* Cambiar a relativo si el padre ya es flex */
-        top: auto;           /* Eliminar el posicionamiento top fijo */
-        right: auto;         /* Eliminar el posicionamiento right fijo */
-        margin-right: 15px;  /* Dar un margen si es necesario */
+        position: relative;  
+        top: auto;           
+        right: auto;         
+        margin-right: 15px;  
     }
     
     nav {
@@ -207,7 +207,6 @@ nav a:hover::after {
         transform: translateX(0);
     }
     
-    /* Retrasos para animación en cascada */
     nav.active li:nth-child(1) { transition-delay: 0.15s; }
     nav.active li:nth-child(2) { transition-delay: 0.25s; }
     nav.active li:nth-child(3) { transition-delay: 0.35s; }
@@ -234,7 +233,7 @@ nav a:hover::after {
         transform: translateY(-9px) rotate(-45deg);
     }
     
-    /* Bloquear scroll cuando el menú está abierto */
+    
     body.menu-open {
         overflow: hidden;
     }
@@ -244,7 +243,7 @@ nav a:hover::after {
     height: 75vh;
     padding-top: 100px;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
-                url('images/Imagen de WhatsApp 2025-04-16 a las 23.01.21_288541f5.jpg');
+                url('/images/fondo.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
